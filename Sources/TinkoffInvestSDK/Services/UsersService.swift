@@ -16,7 +16,7 @@ public class UsersService: BaseService {
     lazy var client = Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClient(channel: channel)
     
     
-    // MARK: - API
+    // MARK: - UsersService API
     
     public func getUserInfo() -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_GetInfoResponse, RPCError> {
         return executor.call(client.getInfo)(.init())

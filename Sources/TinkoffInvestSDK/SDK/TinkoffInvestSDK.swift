@@ -13,7 +13,9 @@ public class TinkoffInvestSDK: ObservableObject {
     
     private let config: TinkoffInvestConfig
     
-    public lazy var userService: UsersService = UsersService(config: config)
+    public lazy var usersService: UsersService = UsersService(config: config)
+    
+    public lazy var operationsService: OperationsService = OperationsService(config: config)
     
     
     // MARK: - Init
