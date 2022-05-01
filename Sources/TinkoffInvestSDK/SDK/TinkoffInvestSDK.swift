@@ -17,11 +17,11 @@ public class TinkoffInvestSDK: ObservableObject {
     
     public lazy var operationsService: OperationsService = OperationsService(config: config)
     
+    public lazy var sandboxService: SandboxService = SandboxService(config: config)
     
     // MARK: - Init
     
     public init(config: TinkoffInvestConfig) {
         self.config = config
     }
-    
 }

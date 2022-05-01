@@ -13,7 +13,7 @@ public class OperationsService: BaseService {
     
     // MARK: - Properties
     
-    lazy var client = Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClient(channel: channel)
+    private lazy var client = Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClient(channel: channel)
     
     
     // MARK: - OperationsService API
