@@ -39,9 +39,12 @@ public class SandboxService: BaseService {
         return executor.call(client.sandboxPayIn)(request)
     }
     
+    public func getSandboxPortfolio(accountID: String) -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse, RPCError> {
+        var request = Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest()
+        request.accountID = accountID
+        return executor.call(client.getSandboxPortfolio)(request)
+    }
     
-    
-//    getSandboxPortfolio
 //    getSandboxOperations
 //    getSandboxOrders
 //    postSandboxOrder
