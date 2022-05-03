@@ -36,7 +36,9 @@ public class OperationsService: BaseService {
         return executor.call(client.getWithdrawLimits)(request)
     }
 
-    public func getOperations(request: Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest) -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse, RPCError> {
+    public func getOperations(accountID: String) -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse, RPCError> {
+        var request = Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest()
+        request.accountID = accountID
         return executor.call(client.getOperations)(request)
     }
 }

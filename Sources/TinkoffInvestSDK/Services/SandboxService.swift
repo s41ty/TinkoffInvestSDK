@@ -45,11 +45,52 @@ public class SandboxService: BaseService {
         return executor.call(client.getSandboxPortfolio)(request)
     }
     
-//    getSandboxOperations
-//    getSandboxOrders
-//    postSandboxOrder
-//    cancelSandboxOrder
-//    getSandboxOrderState
-//    getSandboxPositions
+    public func postSandboxOrder(
+        accountID: String,
+        figi: String,
+        quantity: Int64,
+        price: Tinkoff_Public_Invest_Api_Contract_V1_Quotation,
+        direction: Tinkoff_Public_Invest_Api_Contract_V1_OrderDirection,
+        orderType: Tinkoff_Public_Invest_Api_Contract_V1_OrderType
+    ) -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse, RPCError> {
+        var request = Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest()
+        request.accountID = accountID
+        request.quantity = quantity
+        request.direction = direction
+        request.orderType = orderType
+        request.price = price
+        return executor.call(client.postSandboxOrder)(request)
+    }
     
+    public func getSandboxOperations(accountID: String) -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse, RPCError> {
+        var request = Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest()
+        request.accountID = accountID
+        return executor.call(client.getSandboxOperations)(request)
+    }
+    
+    public func getSandboxPositions(accountID: String) -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse, RPCError> {
+        var request = Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest()
+        request.accountID = accountID
+        return executor.call(client.getSandboxPositions)(request)
+    }
+    
+    public func getSandboxOrders(accountID: String) -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersResponse, RPCError> {
+        var request = Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersRequest()
+        request.accountID = accountID
+        return executor.call(client.getSandboxOrders)(request)
+    }
+    
+    public func getSandboxOrderState(accountID: String, orderID: String) -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_OrderState, RPCError> {
+        var request = Tinkoff_Public_Invest_Api_Contract_V1_GetOrderStateRequest()
+        request.accountID = accountID
+        request.orderID = orderID
+        return executor.call(client.getSandboxOrderState)(request)
+    }
+    
+    public func cancelSandboxOrder(accountID: String, orderID: String) -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderResponse, RPCError> {
+        var request = Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderRequest()
+        request.accountID = accountID
+        request.orderID = orderID
+        return executor.call(client.cancelSandboxOrder)(request)
+    }
 }

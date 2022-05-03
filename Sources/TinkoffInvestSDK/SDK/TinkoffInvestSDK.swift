@@ -19,6 +19,15 @@ public class TinkoffInvestSDK: ObservableObject {
     
     public lazy var sandboxService: SandboxService = SandboxService(config: config)
     
+    public lazy var marketDataService: MarketDataService = MarketDataService(config: config)
+    
+    public lazy var instrumentsService: InstrumentsService = InstrumentsService(config: config)
+    
+    public lazy var ordersService: OrdersService = OrdersService(config: config)
+    
+    public lazy var stopOrders: StopOrdersService = StopOrdersService(config: config)
+
+    
     // MARK: - Init
     
     public init(config: TinkoffInvestConfig) {
