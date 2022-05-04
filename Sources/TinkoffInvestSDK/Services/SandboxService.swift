@@ -59,6 +59,7 @@ public class SandboxService: BaseService {
         request.direction = direction
         request.orderType = orderType
         request.price = price
+        request.figi = figi
         return executor.call(client.postSandboxOrder)(request)
     }
     
