@@ -71,6 +71,13 @@ public class InstrumentsService: BaseService {
         return executor.call(client.currencyBy)(request)
     }
     
+    public func getInstrumentBy(figi: String) -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_InstrumentResponse, RPCError> {
+        var request = Tinkoff_Public_Invest_Api_Contract_V1_InstrumentRequest()
+        request.id = figi
+        request.idType = .figi
+        return executor.call(client.getInstrumentBy)(request)
+    }
+    
     public func getFavorites() -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_GetFavoritesResponse, RPCError> {
         return executor.call(client.getFavorites)(.init())
     }
