@@ -25,6 +25,52 @@ public class InstrumentsService: BaseService {
         return executor.call(client.shares)(request)
     }
     
+    public func etfs() -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_EtfsResponse, RPCError> {
+        var request = Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsRequest()
+        request.instrumentStatus = .base
+        return executor.call(client.etfs)(request)
+    }
+    
+    public func bonds() -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_BondsResponse, RPCError> {
+        var request = Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsRequest()
+        request.instrumentStatus = .base
+        return executor.call(client.bonds)(request)
+    }
+    
+    public func currencies() -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_CurrenciesResponse, RPCError> {
+        var request = Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsRequest()
+        request.instrumentStatus = .base
+        return executor.call(client.currencies)(request)
+    }
+    
+    public func shareBy(figi: String) -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_ShareResponse, RPCError> {
+        var request = Tinkoff_Public_Invest_Api_Contract_V1_InstrumentRequest()
+        request.id = figi
+        request.idType = .figi
+        return executor.call(client.shareBy)(request)
+    }
+    
+    public func etfBy(figi: String) -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_EtfResponse, RPCError> {
+        var request = Tinkoff_Public_Invest_Api_Contract_V1_InstrumentRequest()
+        request.id = figi
+        request.idType = .figi
+        return executor.call(client.etfBy)(request)
+    }
+    
+    public func bondBy(figi: String) -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_BondResponse, RPCError> {
+        var request = Tinkoff_Public_Invest_Api_Contract_V1_InstrumentRequest()
+        request.id = figi
+        request.idType = .figi
+        return executor.call(client.bondBy)(request)
+    }
+    
+    public func currencyBy(figi: String) -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_CurrencyResponse, RPCError> {
+        var request = Tinkoff_Public_Invest_Api_Contract_V1_InstrumentRequest()
+        request.id = figi
+        request.idType = .figi
+        return executor.call(client.currencyBy)(request)
+    }
+    
     public func getFavorites() -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_GetFavoritesResponse, RPCError> {
         return executor.call(client.getFavorites)(.init())
     }
