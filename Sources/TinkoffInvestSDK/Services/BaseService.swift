@@ -26,7 +26,11 @@ public class BaseService {
         CallOptions(customMetadata: ["Authorization": "Bearer \(config.token)", "x-app-name": config.appName])
     ).eraseToAnyPublisher()
 
-    lazy var channel = try! GRPCChannelPool.with(target: .hostAndPort(Constants.url, Constants.port), transportSecurity: .tls(.makeClientConfigurationBackedByNIOSSL()), eventLoopGroup: group)
+    lazy var channel = try! GRPCChannelPool.with(
+        target: .hostAndPort(Constants.url, Constants.port),
+        transportSecurity: .tls(.makeClientConfigurationBackedByNIOSSL()),
+        eventLoopGroup: group
+    )
     
     lazy var executor = GRPCExecutor(callOptions: defaulCallOptions)
     
