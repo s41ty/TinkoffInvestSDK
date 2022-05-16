@@ -90,4 +90,8 @@ public class InstrumentsService: BaseService {
         request.actionType = actionType
         return executor.call(client.editFavorites)(request)
     }
+    
+    public func tradingSchedules() -> AnyPublisher<Tinkoff_Public_Invest_Api_Contract_V1_TradingSchedulesResponse, RPCError> {
+        return executor.call(client.tradingSchedules)(.init())
+    }
 }
