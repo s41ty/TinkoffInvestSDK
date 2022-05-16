@@ -14,3 +14,10 @@ public extension Date {
         return Google_Protobuf_Timestamp(date: self)
     }
 }
+
+public extension Google_Protobuf_Timestamp {
+    
+    var asDate: Date {
+        return Date(timeIntervalSince1970: Double(self.seconds))
+    }
+}
