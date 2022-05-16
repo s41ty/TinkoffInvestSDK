@@ -8,6 +8,7 @@
 import CombineGRPC
 import Combine
 import GRPC
+import Foundation
 
 public class OrdersService: BaseService {
     
@@ -33,6 +34,7 @@ public class OrdersService: BaseService {
         request.orderType = orderType
         request.price = price
         request.figi = figi
+        request.orderID = UUID().uuidString
         return executor.call(client.postOrder)(request)
     }
     
