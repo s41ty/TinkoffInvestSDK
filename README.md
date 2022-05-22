@@ -3,9 +3,9 @@
 Библиотека для взаимодействия с торговой платформой Тинькофф Инвестиции. Единый исходный код на Swift 5 позволяет использовать библиотеку на любых девайсах Apple - iPhone, iPad, MacBook и пр. 
 
 - работа со счетами и заявками в песочнице
-- создание заявки на бирже
-- получение рыночные данные
-- получение информацию по своему портфелю
+- создание и отмена заявки на бирже
+- получение рыночных данных
+- получение информации по своему портфелю
 - проверка алгоритмов торговли на исторических данных
 - и другие возможности API Тинькофф Инвестиций
 
@@ -117,6 +117,27 @@ sdk.sandboxService.postSandboxOrder(accountID: accountId, figi: figi, quantity: 
         print(response)
     }
     .store(in: &cancellableSet)     
+```
+
+## Получение рыночных данных
+#### Запрос исторических свечей по инструменту
+```swift
+let figi = "BBG333333333"
+let fromDate = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
+let toDate = Calendar.current.date(byAdding: .day, value: 0, to: Date())!
+sdk.marketDataService.getCandels(figi: figi, from: fromDate.asProtobuf, to: toDate.asProtobuf, interval: .candleInterval1Min)
+    .receive(on: RunLoop.main)
+    .sink { completion in
+        switch completion {
+        case .failure(let error):
+            print("\(error.localizedDescription)")
+        case .finished:
+            print("did finish loading getCandels")
+        }        
+    } receiveValue: { response in
+        print(response)
+    }
+    .store(in: &cancellableSet)    
 ```
 
 ## Работа с основными счетами
